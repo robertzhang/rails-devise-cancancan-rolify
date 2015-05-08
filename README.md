@@ -66,18 +66,18 @@ before_filter :authenticate_user!
 
 cancan提供对资源的授权控制。例如，在视图中使用can?方法来决定是否显示某个页面元素。如果系统角色非常简单，那么cancan还在代码中直接指定常量就可以支持，具体操作可以参考官方文档。但要提供复杂的角色管理，最好的方案，还是在devise基础上再集成cancan+rolify。
 
-1. 修改Gemfile，并再次运行bundle install
+1.修改Gemfile，并再次运行bundle install
 ~~~
 gem 'cancan'
 gem 'rolify'
 ~~~
-2. 创建cancan的Ability和rolify的Role
+2.创建cancan的Ability和rolify的Role
 ~~~
 $ rails generate cancan:ability
 $ rails generate rolify Role User
 $ rake db:migrate
 ~~~
-3. 定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：
+3.定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：
 ~~~
     class ApplicationController < ActionController::Base
      def after_sign_in_path_for(resource)
@@ -91,7 +91,7 @@ $ rake db:migrate
      end
    end
 ~~~
-4. 使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：
+4.使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：
 ~~~
     class Ability
      include CanCan::Ability
@@ -104,7 +104,7 @@ $ rake db:migrate
      end
    end
 ~~~
-5. 以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：
+5.以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：
 ~~~
     <% if user_signed_in? %>
         <p>The user is loged in.</p>
