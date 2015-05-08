@@ -78,6 +78,7 @@ $ rails generate rolify Role User
 $ rake db:migrate
 ~~~
 3. 定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：
+~~~
     class ApplicationController < ActionController::Base
      def after_sign_in_path_for(resource)
        if resource.is_a?(User)
@@ -89,7 +90,9 @@ $ rake db:migrate
        root_path
      end
    end
+~~~
 4. 使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：
+~~~
     class Ability
      include CanCan::Ability
      def initialize(user)
@@ -100,11 +103,13 @@ $ rake db:migrate
        end
      end
    end
+~~~
 5. 以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：
-
+~~~
     <% if user_signed_in? %>
         <p>The user is loged in.</p>
         <% if can? :manage, :Home %>
           <%= link_to "About", home_about_path   %>
         <% end %>
     <% end %>
+~~~
