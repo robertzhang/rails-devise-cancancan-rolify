@@ -118,4 +118,4 @@ $ rake db:migrate
 ## License
 欢迎修改、完善和指正不合理的步骤。
 
-感谢：http://my.oschina.net/silentboy/blog/204772博主的资源
+感谢：http://my.oschina.net/silentboy/blog/204772  博主的资源
