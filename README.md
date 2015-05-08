@@ -1,21 +1,22 @@
 # rails-devise-cancancan-rolify
 devise、cancancan、rolify的使用说明
 
-### devise的集成
 
-#### 1.创建项目
+## devise的集成
+
+### 1.创建项目
 rails new project_name --skip-bundle #跳过bundler
 
-#### 2.在gemfile中加入gem包
+### 2.在gemfile中加入gem包
 ~~~
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
 ~~~
 
-#### 3.运行bundler加载gem包
+### 3.运行bundler加载gem包
 
-#### 4.初始化devise
+### 4.初始化devise
 ~~~
 rails g devise:install
 ~~~
@@ -53,16 +54,16 @@ rails g controller home index
 ~~~
 rails g devise:views
 ~~~
-#### 5.生成用户模型
+### 5.生成用户模型
 ~~~
 rails g devise User #可以是任意name
 rake db:migrate
 ~~~
-#### 6.在controller中加入认证过滤
+### 6.在controller中加入认证过滤
 ~~~
 before_filter :authenticate_user!
 ~~~
-### 集成cancan和rolify
+## 集成cancan和rolify
 
 cancan提供对资源的授权控制。例如，在视图中使用can?方法来决定是否显示某个页面元素。如果系统角色非常简单，那么cancan还在代码中直接指定常量就可以支持，具体操作可以参考官方文档。但要提供复杂的角色管理，最好的方案，还是在devise基础上再集成cancan+rolify。
 
@@ -113,3 +114,8 @@ $ rake db:migrate
         <% end %>
     <% end %>
 ~~~
+
+## License
+欢迎修改、完善和指正不合理的步骤。
+
+感谢：http://my.oschina.net/silentboy/blog/204772博主的资源
