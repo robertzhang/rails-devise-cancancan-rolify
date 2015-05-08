@@ -40,3 +40,16 @@ rails g controller home index
 ~~~
 <p class="notice"><%= notice %></p>  <p class="alert"><%= alert %></p> 
 ~~~
+4) 很多时候还需要增加登录、退出的选项：
+
+    <% if current_user %>
+      <%= link_to('退出', destroy_user_session_path, :method => :delete) %> |
+      <%= link_to('修改密码', edit_registration_path(:user)) %>
+    <% else %>
+      <%= link_to('注册', new_registration_path(:user)) %> |
+      <%= link_to('登录', new_session_path(:user)) %>
+    <% end %><span></span>
+5) 如果要定制Devise的view模型，可以再执行以下语句：
+~~~
+rails g devise:views
+~~~
