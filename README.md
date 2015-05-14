@@ -1,6 +1,6 @@
 # rails-devise-cancancan-rolify
 devise、cancancan、rolify的使用说明
-
+关于用户管理和权限管理详细介绍可以阅读：   https://ruby-china.org/topics/25512
 
 ## devise的集成
 
